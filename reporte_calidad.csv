@@ -1,0 +1,14 @@
+regla,filas_antes,filas_despues,filas_afectadas,detalle
+R1 duplicados exactos de cliente_id,5025,5000,25,se conserva 1 fila por cliente
+R2/R3 email y telefono invalidos,5000,5000,0,email invalidos=245 | telefonos invalidos=229 | contactables=4803
+creditos con monto <= 0,6254,6254,0,se descartan 0 filas inviables
+R5 monto_pagado negativo,71229,71229,0,61 filas: se aplica valor absoluto y se marca la bandera
+R4 fecha_pago en el futuro,71229,71229,0,137 filas: se anula el pago y se reclasifica a VENCIDA
+R6 PAGADA sin fecha_pago,71229,71229,0,69 filas: fecha imputada = vencimiento + dias_atraso
+coherencia dias_atraso vs fechas,71229,71229,0,136 filas con desviacion > 1 dia
+R7 formato de canal/resultado,25689,25689,0,85 canales y 85 resultados normalizados
+coherencia PROMESA_PAGO vs fecha_promesa,25689,25689,0,0 filas con PROMESA_PAGO sin fecha de promesa
+coherencia monto_recuperado vs resultado,25689,25689,0,0 filas con monto recuperado sin resultado de pago
+"duplicados por (fecha_corte, credito_id)",21547,21547,0,
+coherencia bucket_mora vs dias_atraso,21547,21547,0,"0 filas con bucket incorrecto, recalculado"
+saldo_vencido > saldo_total,21547,21547,0,0 filas incoherentes

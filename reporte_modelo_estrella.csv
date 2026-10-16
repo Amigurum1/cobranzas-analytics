@@ -1,0 +1,17 @@
+chequeo,resultado,esperado,cumple
+gestiones: staging vs hecho,0,0,True
+cuotas: staging vs hecho,0,0,True
+mora: staging vs hecho,0,0,True
+gestiones sin credito_key,0,0,True
+gestiones sin cliente_key,0,0,True
+gestiones sin canal_key,0,0,True
+gestiones sin resultado_key,0,0,True
+gestiones sin asesor_key,0,0,True
+cuotas sin credito_key,0,0,True
+mora sin credito_key,0,0,True
+cuadre recaudado (cuotas),0,0,True
+cuadre recuperado (gestiones),0,0,True
+cuadre saldo vencido (mora),0,0,True
+PTP marcada sin fecha de promesa,0,0,True
+pagos con monto recuperado en cero,0,0,True
+saldo_cuota negativo (pago de mas),0,0,True

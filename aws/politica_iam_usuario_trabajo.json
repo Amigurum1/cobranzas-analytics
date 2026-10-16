@@ -1,0 +1,50 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "LeerRolesParaIdempotencia",
+      "Effect": "Allow",
+      "Action": [
+        "iam:GetRole",
+        "iam:ListRoles",
+        "iam:GetRolePolicy",
+        "iam:ListRolePolicies",
+        "iam:ListAttachedRolePolicies"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "CrearYConfigurarSoloLosRolesDelProyecto",
+      "Effect": "Allow",
+      "Action": [
+        "iam:CreateRole",
+        "iam:AttachRolePolicy",
+        "iam:PutRolePolicy"
+      ],
+      "Resource": [
+        "arn:aws:iam::*:role/AWSGlueServiceRole-analitica-cobranzas",
+        "arn:aws:iam::*:role/analitica-cobranzas-lambda-role",
+        "arn:aws:iam::*:role/RedshiftServerlessS3-analitica-cobranzas"
+      ]
+    },
+    {
+      "Sid": "PasarSoloEsosRolesYSoloAEsosServicios",
+      "Effect": "Allow",
+      "Action": "iam:PassRole",
+      "Resource": [
+        "arn:aws:iam::*:role/AWSGlueServiceRole-analitica-cobranzas",
+        "arn:aws:iam::*:role/analitica-cobranzas-lambda-role",
+        "arn:aws:iam::*:role/RedshiftServerlessS3-analitica-cobranzas"
+      ],
+      "Condition": {
+        "StringEquals": {
+          "iam:PassedToService": [
+            "glue.amazonaws.com",
+            "lambda.amazonaws.com",
+            "redshift-serverless.amazonaws.com"
+          ]
+        }
+      }
+    }
+  ]
+}

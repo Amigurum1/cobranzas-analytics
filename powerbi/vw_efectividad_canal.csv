@@ -1,0 +1,7 @@
+﻿canal,es_digital,es_bidireccional,gestiones,creditos,asesores,contactos,pagos,promesas,costo,recuperado,duracion,pct_pago,pct_promesa,costo_por_sol
+CARTA,False,False,1098,900,40,0,218,327,2309.05,100292.1,,19.85,29.78,0.023
+EMAIL,True,False,2053,1402,40,0,406,665,4315.1,158385.11,,19.78,32.39,0.0272
+LLAMADA,False,True,9586,3472,40,0,1977,2999,21140.45,772997.76,315.61068224494056,20.62,31.29,0.0273
+SMS,True,False,6299,2851,40,0,1242,1963,14187.75,536804.85,,19.72,31.16,0.0264
+VISITA,False,True,1115,872,40,0,194,324,2585.9,76382.58,,17.4,29.06,0.0339
+WHATSAPP,True,True,5538,2617,40,0,1137,1749,12356.7,477043.3,,20.53,31.58,0.0259

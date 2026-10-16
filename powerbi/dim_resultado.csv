@@ -1,0 +1,9 @@
+﻿resultado_key,resultado,grupo,es_pago,es_promesa,es_contacto
+1,CLIENTE_MOLESTO,RECHAZO,False,False,True
+2,CONTACTADO,CONTACTO,False,False,True
+3,NO_CONTACTADO,SIN_CONTACTO,False,False,False
+4,NUMERO_INVALIDO,DATO_INVALIDO,False,False,False
+5,PAGO_PARCIAL,PAGO,True,False,True
+6,PAGO_TOTAL,PAGO,True,False,True
+7,PROMESA_PAGO,PROMESA,False,True,True
+8,RECHAZA_PAGO,RECHAZO,False,False,True

@@ -1,0 +1,50 @@
+# ============================================================
+#  DATOS REGENERABLES
+# ============================================================
+#  raw/ y curated/ se recrean en segundos con los scripts de
+#  este mismo repo:
+#      python generar_dataset_cobranzas.py --out raw
+#      cd aws && python etl_limpieza_local.py
+#  Ver la seccion "Como reproducirlo paso a paso" del README.
+#  Los CSV de powerbi/ SI se versionan: son los que consume
+#  el tablero (.pbix) para funcionar sin AWS.
+raw/
+curated/
+
+
+# ============================================================
+#  DOCUMENTOS DE TRABAJO INTERNOS
+# ============================================================
+#  Material de entrevista y repaso: fuera del alcance de este
+#  proyecto de portafolio.
+entrevista/
+
+
+# ============================================================
+#  CONFIGURACION LOCAL
+# ============================================================
+#  config.json guarda el nombre real del bucket desplegado.
+#  Quien clone el repo debe crear el suyo (el script lo genera
+#  solo en la primera ejecucion de 01_setup_s3.ps1).
+aws/config.json
+aws/salida_*.txt
+salida_*.txt
+
+
+# ============================================================
+#  BASURA DE PYTHON
+# ============================================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.pytest_cache/
+
+
+# ============================================================
+#  SISTEMA OPERATIVO
+# ============================================================
+Thumbs.db
+desktop.ini
+.DS_Store
+*.log

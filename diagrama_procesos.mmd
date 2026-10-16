@@ -1,0 +1,29 @@
+flowchart TB
+    GEN["generar_dataset_cobranzas.py<br/>5 CSV - 129,744 filas<br/>+ 7 errores a proposito"]
+
+    subgraph LOCAL["RUTA LOCAL - depurar gratis"]
+        ETL["etl_limpieza_local.py<br/>pandas"]
+        LCUR["curated/<br/>Parquet particionado"]
+        EXP["exportar_para_powerbi.py"]
+        LPBI["powerbi/<br/>20 CSV"]
+    end
+
+    subgraph AWS["RUTA AWS - pipeline en la nube"]
+        S3R["S3 raw/"]
+        LAM["Lambda<br/>dispara al subir un archivo"]
+        GLU["Glue - PySpark<br/>misma logica de limpieza"]
+        S3C["S3 curated/<br/>Parquet particionado"]
+        ATH["Athena<br/>validar el dato"]
+        RS["Redshift Serverless<br/>7 dims + 3 hechos + 10 vistas"]
+    end
+
+    PBI["Power BI Desktop<br/>4 paginas - 6 bloques DAX"]
+
+    GEN --> ETL
+    GEN --> S3R
+    ETL --> LCUR --> EXP --> LPBI
+    S3R --> LAM --> GLU --> S3C
+    S3C --> ATH
+    S3C --> RS
+    LPBI --> PBI
+    RS --> PBI

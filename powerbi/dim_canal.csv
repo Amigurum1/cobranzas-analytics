@@ -1,0 +1,7 @@
+﻿canal_key,canal,es_digital,es_presencial,es_autogestionado,es_bidireccional
+1,CARTA,False,False,True,False
+2,EMAIL,True,False,True,False
+3,LLAMADA,False,False,False,True
+4,SMS,True,False,True,False
+5,VISITA,False,True,False,True
+6,WHATSAPP,True,False,False,True

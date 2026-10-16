@@ -1,0 +1,48 @@
+SECCION,A,PRECIOS UNITARIOS (us-east-1, verificar en aws.amazon.com/pricing),,
+Servicio,Unidad,Tarifa USD,Notas
+S3 Standard,GB-mes,0.023,"Solo almacenamiento: se paga aunque no lo uses. Free tier 5 GB por 12 meses"
+S3 PUT/GET,1000 requests,0.005,"Aproximado. Los GET son mas baratos (~0.0004 por 1000)"
+Athena,TB escaneado,5.00,"No cobra por tiempo. Parquet + particiones reduce 90% del costo"
+Lambda,GB-segundo,0.0000166667,"Free tier permanente: 1M requests + 400,000 GB-s al mes"
+Lambda,1M requests,0.20,"Casi siempre queda en $0 en proyectos de portafolio"
+DynamoDB on-demand,1M escrituras,1.25,"Free tier permanente: 25 GB + 25 WCU/RCU"
+DynamoDB on-demand,1M lecturas,0.25,""
+DynamoDB almacenamiento,GB-mes,0.25,""
+Redshift Serverless,RPU-hora,0.375,"MINIMO 4 RPU = $1.50 por hora encendida. Tope auto-pause: 60 seg"
+Glue ETL,DPU-hora,0.44,"MINIMO 2 DPU = $0.88/h. Redondeo a 1 minuto"
+CloudWatch Logs,GB ingerido,0.50,"Poner retencion de 7 dias o se acumula para siempre"
+QuickSight,mes por autor,24.00,"SUSCRIPCION FIJA: se paga el mes completo aunque uses 1 hora"
+,,
+SECCION,B,COSTO POR UNA CORRIDA DE 1 HORA (Arquitectura C),,
+Servicio,Calculo,Costo USD,Se reduce con menos horas?
+Redshift Serverless,1 h x 4 RPU x 0.375,1.50,Si - proporcional
+Glue,2 DPU x 1 h x 0.44,0.88,Si - proporcional
+Lambda,512 MB x 60 s x pocas ejecuciones,0.00,Si - pero ya es gratis (free tier)
+S3,2 GB x 0.023 (mes completo),0.05,NO - almacenamiento
+Athena,~100 consultas = ~5 GB escaneados,0.03,Depende del volumen consultado
+DynamoDB,<1 GB + operaciones,0.00,Casi todo en free tier
+CloudWatch Logs,~500 MB con retencion 7 dias,0.25,NO - los logs se quedan
+Subtotal SIN QuickSight,,2.71,
+QuickSight,1 mes (no importa el uso),24.00,NO - suscripcion fija
+TOTAL SIN QuickSight (Power BI Desktop),,2.71,
+TOTAL CON QuickSight,,26.71,
+,,
+SECCION,C,COMO ESCALA SEGUN HORAS DE REDSHIFT + GLUE AL MES,,
+Horas al mes,Variable (4 RPU + 2 DPU),Fijo (S3 + logs),Total sin QuickSight
+0,0.00,0.35,0.35
+1,2.38,0.35,2.73
+4,9.52,0.35,9.87
+8,19.04,0.35,19.39
+20,47.60,0.35,47.95
+40,95.20,0.35,95.55
+730 (24/7),1737.40,0.35,1737.75
+,,
+,,,
+NOTAS DE CONTROL DE GASTO,,,
+1,Habilitar AWS Budgets con alertas en $1 y $5 ANTES de crear cualquier recurso,,
+2,"Redshift Serverless: configurar auto-pause en 60 segundos y eliminar el namespace al terminar",,
+3,"Evitar NAT Gateway (~$32/mes solo por existir). No metas Lambda dentro de una VPC",,
+4,Configurar retencion de 7 dias en todos los log groups de CloudWatch,,
+5,Mantener todo en una sola region (us-east-1 es la mas barata),,
+6,Revisar Billing -> Cost Explorer cada semana,,
+7,"Revisar si calificas a creditos: AWS Educate (estudiantes) o AWS Activate",,
