@@ -1,6 +1,10 @@
 # Pipeline de datos de cobranzas en AWS
 ### Proyecto de portafolio — Analítica de cobranzas
 
+<p align="center">
+  <img src="capturas/portada.jpg" alt="Arquitectura del pipeline: S3, Lambda, Glue, Athena, Redshift y Power BI" width="330">
+</p>
+
 **Bruno** · Pipeline end-to-end de un entorno analítico de cobranzas sobre AWS:
 5 tablas relacionadas, 129,744 registros sintéticos calibrados, 2 capas de datos,
 3 tablas de hechos, 7 dimensiones, 10 vistas de negocio y 33 chequeos de calidad automatizados.

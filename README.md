@@ -1,5 +1,9 @@
 # AWS_Cobranzas — Pipeline de datos de cobranzas
 
+<p align="center">
+  <img src="capturas/portada.jpg" alt="Arquitectura del pipeline: S3, Lambda, Glue, Athena, Redshift y Power BI" width="330">
+</p>
+
 > **Empieza aquí.** Este documento te dice qué hay en la carpeta y cómo reproducirlo.
 > Para la **arquitectura, el diagrama y las decisiones de diseño**: `ARQUITECTURA.md`.
 > Para la **presentación de portafolio**: `PRESENTACION_PROYECTO.md`.
