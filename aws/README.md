@@ -11,18 +11,22 @@ que definimos por costo): **S3 → Glue/Lambda → Athena → Redshift Serverles
 |---|---|
 | Dataset sintético (5 CSV, 129,744 filas) | ✅ Generado y validado |
 | Verificación de integridad de los CSV | ✅ 5/5 sin filas mal formadas |
-| Scripts de creación de S3 | ✅ Listos (`01_setup_s3.ps1`) |
-| Script de carga de datos | ✅ Listo (`02_subir_datos.ps1`) |
-| DDL de la capa raw para Athena | ✅ Listo (`01_athena_ddl_raw.sql`) |
-| **ETL de limpieza (prototipo local)** | ✅ **Listo y probado** (`etl_limpieza_local.py`) |
-| **Job de Glue en PySpark** | ✅ **Listo** (`glue_job_limpieza.py`) |
-| **Scripts de despliegue del job** | ✅ Listos (`03_crear_glue_job.ps1`, `04_ejecutar_job.ps1`) |
-| **Validacion de la capa curada** | ✅ **Todos los chequeos en 0** (`02_athena_validacion_curated.sql`) |
-| **Seguridad de la cuenta (root, IAM, Budgets)** | 📋 **Guía lista** (`00_seguridad_cuenta.md`) |
-| AWS CLI instalado | ❌ Pendiente |
-| Bucket S3 creado | ⏳ Pendiente |
-| Job de Glue ejecutado en AWS | ⏳ Pendiente |
-| Redshift + Power BI | ⏳ Pendiente |
+| **Seguridad de la cuenta (root, IAM, MFA, Budgets)** | ✅ **Completado** (`00_seguridad_cuenta.md`) |
+| AWS CLI instalado | ✅ v2.37.6 |
+| Scripts de creación de S3 | ✅ (`01_setup_s3.ps1`) |
+| Script de carga de datos | ✅ (`02_subir_datos.ps1`) |
+| **Bucket S3 creado** | ✅ **`analitica-cobranzas-<sufijo>` con 11.37 MB en `raw/`** |
+| DDL de la capa raw para Athena | ✅ 5 tablas (`athena_ddl/`, 12 archivos) |
+| **ETL de limpieza (prototipo local)** | ✅ Probado (`etl_limpieza_local.py`) |
+| **Job de Glue en PySpark** | ✅ **Ejecutado en AWS**, conteos idénticos (`glue_job_limpieza.py`) |
+| **Scripts de despliegue del job** | ✅ (`03_crear_glue_job.ps1`, `04_ejecutar_job.ps1`) |
+| **Validación de la capa curada** | ✅ **17 chequeos en 0** + validación en Athena (`athena_val/`, 11 archivos) |
+| **Redshift Serverless: modelo estrella + 10 vistas** | ✅ **14/14 auditoría · workgroup eliminado** |
+| **Tablero Power BI (4 páginas, 38 medidas)** | ✅ Montado y verificado contra Redshift |
+| Lambda de automatización | ⏳ Código listo y 10 pruebas pasando, pendiente de desplegar |
+
+**El pipeline está ejecutado de punta a punta.** Los pasos de abajo se conservan como guía para
+reproducirlo desde cero, y siguen siendo válidos en su orden.
 
 ### Resultado de la limpieza (medido en local)
 
