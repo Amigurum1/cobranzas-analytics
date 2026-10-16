@@ -42,7 +42,7 @@ tablero coinciden con los que devuelven Redshift y Athena.
 | Athena | ✅ 6 validaciones + 4 consultas de negocio |
 | Redshift: modelo estrella + 10 vistas | ✅ **14/14 auditoría · workgroup apagado** |
 | Tablero Power BI (4 páginas, 38 medidas) | ✅ montado |
-| Lambda de automatización | ⏳ código listo y 10 pruebas pasando, pendiente de desplegar |
+| Lambda de automatización | ✅ **desplegada: `raw/*.csv` → Lambda → Glue, sin intervención** |
 
 **Costo real del proyecto: menos de $1.** Ver la sección de costos.
 

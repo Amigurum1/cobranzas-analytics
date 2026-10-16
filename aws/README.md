@@ -23,7 +23,7 @@ que definimos por costo): **S3 → Glue/Lambda → Athena → Redshift Serverles
 | **Validación de la capa curada** | ✅ **17 chequeos en 0** + validación en Athena (`athena_val/`, 11 archivos) |
 | **Redshift Serverless: modelo estrella + 10 vistas** | ✅ **14/14 auditoría · workgroup eliminado** |
 | **Tablero Power BI (4 páginas, 38 medidas)** | ✅ Montado y verificado contra Redshift |
-| Lambda de automatización | ⏳ Código listo y 10 pruebas pasando, pendiente de desplegar |
+| Lambda de automatización | ✅ **Desplegada y probada** (`05_configurar_lambda.ps1`) |
 
 **El pipeline está ejecutado de punta a punta.** Los pasos de abajo se conservan como guía para
 reproducirlo desde cero, y siguen siendo válidos en su orden.

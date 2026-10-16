@@ -206,6 +206,26 @@ if (-not $Simular) {
 # de PowerShell, "$Region`:$cuenta" y "${Region}" se parsean mal.
 $arnLambda = "arn:aws:lambda:" + $Region + ":" + $cuentaId + ":function:" + $FUNCION
 
+# ANTES de crear la notificacion hay que autorizar a S3 a invocar la funcion.
+# Sin este paso, AWS rechaza la notificacion con "Unable to validate the following
+# destination configurations" y el evento no queda configurado.
+if (-not $Simular) {
+    $permiso = aws lambda add-permission --function-name $FUNCION `
+        --statement-id s3-invoke-raw `
+        --action lambda:InvokeFunction `
+        --principal s3.amazonaws.com `
+        --source-arn "arn:aws:s3:::$Bucket" `
+        --region $Region 2>&1
+    if ($LASTEXITCODE -eq 0) {
+        Ok "Permiso concedido: S3 puede invocar la funcion"
+    } elseif ($permiso -match "already exists") {
+        Ok "El permiso de invocacion ya existia"
+    } else {
+        Aviso "No se pudo conceder el permiso a S3:"
+        Write-Host ("      " + $permiso)
+    }
+}
+
 $notificacion = @"
 {
   "LambdaFunctionConfigurations": [

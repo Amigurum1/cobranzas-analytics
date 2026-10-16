@@ -32,6 +32,14 @@ salida_*.txt
 
 
 # ============================================================
+#  ARTEFACTOS DE DESPLIEGUE
+# ============================================================
+#  El .zip de la Lambda lo genera 05_configurar_lambda.ps1 en
+#  cada ejecucion a partir de lambda_disparador.py.
+*.zip
+
+
+# ============================================================
 #  BASURA DE PYTHON
 # ============================================================
 __pycache__/
